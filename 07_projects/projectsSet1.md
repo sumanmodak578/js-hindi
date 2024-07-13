@@ -35,3 +35,37 @@ buttons.forEach((bt) => {
 
 
 ```
+
+## Project 2
+
+```javascript
+const form = document.querySelector('form');
+// this usecase will give you empty
+// const height = parseFloat(document.querySelector('#height').value)
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const height = parseFloat(document.querySelector('#height').value);
+  const weight = parseFloat(document.querySelector('#weight').value);
+  const result = document.querySelector('#results');
+
+  if (height === '' || height < 0 || isNaN(height)) {
+    result.innerHTML = `Please give a vaild height ${height}`;
+  } else if (weight === '' || weight < 0 || isNaN(weight)) {
+    result.innerHTML = `Please give a vaild weight ${weight}`;
+  } else {
+    const bmi = (weight / (height ** 2 / 10000)).toFixed(2);
+
+    // show the result
+    if (bmi > 24.9) {
+      result.innerHTML = `<span>Overweight: ${bmi}</span>`;
+    } else if (bmi < 18.6) {
+      result.innerHTML = `<span>Underweight: ${bmi}</span>`;
+    } else {
+      result.innerHTML = `<span>Normal Range: ${bmi}</span>`;
+    }
+  }
+});
+
+
+```
