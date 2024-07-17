@@ -1,17 +1,29 @@
-let intervalId;
+function createRandom() {
+    const num = Math.round(Math.random()*255 + 1)
+    return num
+}
 
-
-const btnStart = document.querySelector('#start').addEventListener('click', ()=> {
-    const red = Math.round(Math.random() * 255 + 1)
-    const green = Math.round(Math.random() * 255 + 1)
-    const blue = Math.round(Math.random() * 255 + 1)
+const changeBackColor = function() {
+    const red = createRandom()
+    const green = createRandom()
+    const blue = createRandom()
     console.log(red, green, blue)
     const body = document.querySelector('body')
-    intervalId = setInterval(body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`, 1000)  
+    body.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
+}
+
+let intervalId;
+
+const btnStart = document.querySelector('#start').addEventListener('click', ()=> {
+    console.log(intervalId, 'hi');
+    if(!intervalId){
+        intervalId = setInterval(changeBackColor, 1000) 
+        console.log(intervalId);
+    }
 })
 
-intervalId = setInterval(btnStart, 1000)
 
 const btnStop = document.querySelector('#stop').addEventListener('click', ()=> {
-    clearInterval(intervalId)
+    clearInterval(intervalId);
+    //intervalId = null;
 })
